@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload User Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Upload User Data</h1>
+
+    <!-- User Upload Form -->
+    <h3>Upload User Data</h3>
+    <form action="/admin/upload/users" method="post" enctype="multipart/form-data" class="mt-4">
+        <div class="form-group">
+            <label for="userFile">Select User CSV file:</label>
+            <input type="file" id="userFile" name="file" accept=".csv" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block">Upload Users</button>
+    </form>
+
+    <!-- User Upload Message -->
+    <div th:if="${userMessage}" class="message alert alert-info" role="alert">
+        <p th:text="${userMessage}"></p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

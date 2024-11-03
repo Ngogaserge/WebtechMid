@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <title>Admin Dashboard</title>
+  <style>
+    /* General Styles */
+    body {
+      background-color: #e9ecef; /* Light Gray */
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #007bff; /* Primary Blue */
+      color: #ffffff;
+      padding: 10px 0;
+      border-bottom: 2px solid #0056b3; /* Darker Blue */
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    #logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #bbdefb; /* Light Blue */
+    }
+
+    .navigation-menu {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+    }
+
+    .navigation-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .navigation-menu a:hover {
+      background-color: #0056b3; /* Darker Blue on hover */
+      color: #ffffff;
+    }
+
+    .btn-logout {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .btn-logout:hover {
+      background-color: #d32f2f; /* Dark Red */
+      color: #ffffff;
+    }
+
+    /* Container and Card Styles */
+    .container {
+      margin-top: 30px;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #007bff; /* Primary Blue */
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    hr {
+      border-color: #007bff; /* Primary Blue */
+    }
+
+    /* Table Styling */
+    .table {
+      margin-top: 20px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .table th, .table td {
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .table thead th {
+      background-color: #007bff; /* Primary Blue */
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: rgba(0, 123, 255, 0.1); /* Light Primary Blue */
+    }
+
+    /* Button Styles */
+    .btn {
+      border-radius: 20px;
+      padding: 8px 15px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Primary Blue */
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker Blue */
+      transform: scale(1.05);
+    }
+
+    .btn-success {
+      background-color: #4caf50; /* Green */
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #388e3c; /* Dark Green */
+      transform: scale(1.05);
+    }
+
+    .btn-warning {
+      background-color: #ffb300; /* Amber */
+      color: #004d40; /* Darker shade of Teal */
+      border: none;
+    }
+
+    .btn-warning:hover {
+      background-color: #ff8f00; /* Darker Amber */
+      transform: scale(1.05);
+    }
+
+    .btn-danger {
+      background-color: #f44336; /* Red */
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #c62828; /* Dark Red */
+      transform: scale(1.05);
+    }
+
+    /* Pagination Styles */
+    .pagination .page-item.active .page-link {
+      background-color: #007bff; /* Primary Blue */
+      border-color: #007bff;
+      color: #ffffff;
+    }
+
+    .pagination .page-link {
+      color: #007bff; /* Primary Blue */
+      transition: color 0.3s;
+    }
+
+    .pagination .page-link:hover {
+      color: #0056b3; /* Darker Blue */
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div id="logo">
+      Online Voting System
+    </div>
+    <ul class="navigation-menu">
+      <!-- <li><a th:href="@{/admin}">User Management</a></li> -->
+    </ul>
+    <div class="ms-auto d-flex align-items-center">
+      <a th:href="@{/logout}" class="btn btn-danger btn-logout">Logout</a>
+    </div>
+  </div>
+</header>
+
+<div class="container mt-4">
+  <h3>User Management</h3>
+  <hr>
+  <div class="d-flex gap-2 mb-3">
+    <a th:href="@{/admin/add}" class="btn btn-primary">Add New User</a>
+    <a th:href="@{/admin/search}" class="btn btn-primary">Search User</a>
+    <a th:href="@{/admin/download/users}" class="btn btn-success">Download Data</a>
+    <a th:href="@{/admin/upload}" class="btn btn-success">Upload Data</a>
+  </div>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.phoneNumber}"></td>
+      <td th:text="${user.role}"></td>
+      <td>
+        <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Edit</a>
+        <form th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${currentPage - 1}, pageSize=${pageSize})}">Previous</a>
+      </li>
+      <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == i} ? 'active' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${i}, pageSize=${pageSize})}" th:text="${i + 1}"></a>
+      </li>
+      <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${currentPage + 1}, pageSize=${pageSize})}">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+  <h4>User Role Statistics</h4>
+  <canvas id="chart" width="400" height="200"></canvas>
+
+  <script>
+    // Fetch user role statistics and render chart
+    fetch('/admin/user-role-stats')
+            .then(response => response.json())
+            .then(data => {
+              const roles = Object.keys(data);
+              const roleCounts = Object.values(data);
+
+              const ctx = document.getElementById('chart').getContext('2d');
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: roles,
+                  datasets: [{
+                    label: 'Number of Users per Role',
+                    data: roleCounts,
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)', // Light Primary Blue
+                    borderColor: 'rgba(0, 123, 255, 1)', // Primary Blue
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            })
+            .catch(error => console.error('Error fetching user role statistics:', error));
+  </script>
+</div>
+
+</body>
+</html>

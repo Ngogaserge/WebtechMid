@@ -1,0 +1,286 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Welcome to the Home Page</h1>-->
+<!--<p>Please choose an option below:</p>-->
+
+
+<!--<p>login <a th:href="@{/login}">click here to login</a>.</p>-->
+<!--<p>Iregister <a th:href="@{/register}">click here to register</a>.</p>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grocery Store - Fresh Products at Best Prices</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f0f0f0;
+      color: #2c3e50;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #1abc9c;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      list-style-type: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #f1c40f;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 30vh;
+      background-image: url("hero-background.jpg"); /* Replace with your own image */
+      background-size: cover;
+      background-position: center;
+      color: rgb(28, 156, 2);
+      padding: 0 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero-section p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero-section button {
+      padding: 15px 25px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .hero-section button:hover {
+      background-color: #16a085;
+    }
+
+    /* Main Content Section */
+    .main-content {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .main-content h2 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .product {
+      width: 250px;
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .product img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .product p {
+      font-size: 16px;
+      color: #7f8c8d;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    /* Offer Section */
+    .offer-section {
+      background-color: #f1c40f;
+      padding: 40px 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .offer-section h2 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    /* Footer Section */
+    .footer {
+      background-color: #1abc9c;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .footer h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .footer ul li a:hover {
+      color: #f1c40f;
+    }
+
+    .footer .social-icons {
+      margin-top: 20px;
+    }
+
+    .footer .social-icons a {
+      margin: 0 10px;
+      font-size: 24px;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .footer .social-icons a:hover {
+      color: #1abc9c;
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="logo">Grocery Store</div>
+  <ul class="nav-links">
+    <li><a href="#">Contact</a></li>
+    <li><a th:href="@{/login}">Login</a></li>
+    <li><a th:href="@{/register}">Register</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section (Landing Page) -->
+<section class="hero-section">
+  <h1>Welcome to Great Grocery Store</h1>
+  <p>Find fresh products at unbeatable prices. Shop groceries today!</p>
+  <button>Start Shopping</button>
+</section>
+
+<!-- Featured Products -->
+<section class="main-content">
+  <h2>Featured Products</h2>
+  <div class="product">
+    <img src="apples.jfif" alt="Fresh Apples" />
+    <h3>Fresh Apples</h3>
+    <p>$2.99/kg</p>
+  </div>
+  <div class="product">
+    <img src="inyange milk.jpg" alt="Inyange Milk" />
+    <h3>Inyange Milk</h3>
+    <p>$3.49/liter</p>
+  </div>
+  <div class="product">
+    <img src="chicken.jpg" alt="Chicken" />
+    <h3>Chicken</h3>
+    <p>$6.99/kg</p>
+  </div>
+  <div class="product">
+    <img src="bread.jfif" alt="Whole Wheat Bread" />
+    <h3>Whole Wheat Bread</h3>
+    <p>$1.99/loaf</p>
+  </div>
+</section>
+
+<!-- Special Offer Section -->
+<section class="offer-section">
+  <h2>Special Offer: 50% Off on All Fruits!</h2>
+  <p>Shop now and enjoy fresh fruits at unbeatable prices.</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <h3>Stay Connected</h3>
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Terms of Service</a></li>
+  </ul>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+</body>
+</html>

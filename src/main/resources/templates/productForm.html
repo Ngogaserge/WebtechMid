@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${product.id} == null ? 'Add Product' : 'Edit Product'"></title>
+</head>
+<body>
+
+<h1 th:text="${product.id} == null ? 'Add Product' : 'Edit Product'"></h1>
+
+<form th:action="@{/products}" th:object="${product}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required/><br/>
+
+    <label>Category:</label>
+    <select th:field="*{category}" required>
+        <option value="Fruit">Fruit</option>
+        <option value="Vegetable">Vegetable</option>
+        <option value="Drink">Drink</option>
+    </select><br/>
+
+    <label>Price:</label>
+    <input type="number" th:field="*{price}" step="0.01" required/><br/>
+
+    <label>Description:</label>
+    <textarea th:field="*{description}" required></textarea><br/>
+
+    <button type="submit">Save</button>
+    <a href="/products">Cancel</a>
+</form>
+
+</body>
+</html>

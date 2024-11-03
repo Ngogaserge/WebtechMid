@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User Profile</title>
+</head>
+<body>
+<h1>User Profile</h1>
+<div>
+  <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+  <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+  <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+  <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+  <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+  <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+  <!-- If the profile picture is stored as a URL -->
+  <img th:src="${user.profilePicture}" alt="Profile Picture" />
+</div>
+<a href="/logout">Logout</a>
+</body>
+</html>

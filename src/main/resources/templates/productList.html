@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product List</title>
+</head>
+<body>
+
+<h1>Product List</h1>
+
+<!-- Button to create a new product -->
+<a href="/products/new">Add New Product</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.category}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        <td>
+            <!-- Edit link using product ID -->
+            <a th:href="@{/products/edit(id=${product.id})}">Edit</a> |
+            <!-- Delete link using product ID -->
+            <a th:href="@{/products/delete(id=${product.id})}"
+               onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
