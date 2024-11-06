@@ -77,6 +77,10 @@ public class AdminUserController {
     public String showUploadPage() {
         return "upload"; // This should show the upload page
     }
+    @GetMapping("/voter")
+    public String showLoginForm() {
+        return "customer"; // Template name for login
+    }
 
     // Handle POST requests for user upload
     @PostMapping("/admin/upload/users")
@@ -99,7 +103,7 @@ public class AdminUserController {
                 user.setFirstName(data[2]);
                 user.setLastName(data[3]);
                 user.setEmail(data[4]);
-//                user.setPhoneNumber(data[4]);
+                user.setPhoneNumber(data[5]);
 //                user.setProfilePicture(data[5]);
 //                user.setRole(Role.valueOf(data[6]));
                 userList.add(user);

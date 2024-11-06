@@ -91,7 +91,7 @@ public class UserController {
             case ROLE_SELLER:
                 return "redirect:/seller"; // Redirect to seller page
             case ROLE_USER:
-                return "redirect:/customer"; // Redirect to customer page
+                return "redirect:/voter"; // Redirect to customer page
             default:
                 return "redirect:/login"; // Default redirect if no role matches
         }
